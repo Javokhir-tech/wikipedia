@@ -47,13 +47,7 @@ def search(request):
     # return HttpResponse(search_entry)
     # return HttpResponse(list_entries)  # CSSDjangoGitHTMLPython
 
-    '''for entry in list_entries:   returns only CSS 
-        return HttpResponse(entry)
-    return render(request, "encyclopedia/search.html", {    returns ['CSS', 'Django', 'Git', 'HTML', 'Python']
-        "results": list_entries
-    })'''
-    
-    # get search_entry
+    # Get search_entry
     search_entry = request.POST['q']  # post
     # list of entries
     entry_list = util.list_entries()
@@ -91,42 +85,6 @@ def search(request):
                 "substrings": substrings,
                 "title": search_entry.upper()
             })
-
-        '''
-        for entry in list_entries:
-            results.append(entry)
-            if search_entry.upper() == entry.upper():
-                return render(request, "encyclopedia/search.html", {
-                    "results": markdown2.markdown(content),
-                    "title": search_entry.upper()
-                })
-            else:
-                #index(request)
-                
-                return render(request, "encyclopedia/search.html", {
-                    "results": results,
-                    'title': search_entry
-                })
-
-                #return render(request, "encyclopedia/index.html", {
-                #    "entries": util.list_entries()
-                #})
-        '''
-
-        '''
-        if search_entry in list_entries:
-            return HttpResponse(search_entry)
-            # return HttpResponseRedirect("/wiki/" + request.POST["q"])
-        else:
-            for entry in list_entries:
-                if search_entry in entry:
-                    results.append(entry)
-                    return render(request, "encyclopedia/search.html", {
-                        "results": results
-                    })
-                else:
-                    return HttpResponse("He")
-        '''
 
 # Form to input title name
 class NewTitleForm(forms.Form):
