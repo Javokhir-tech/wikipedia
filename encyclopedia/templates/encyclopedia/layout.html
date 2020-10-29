@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="row">
+        <div class="sidebar col-lg-3 col-md-3">
+            <div class="icon">
+                <img src="https://image.flaticon.com/icons/png/512/48/48927.png" alt="wiki_logo" class="wiki_logo">
+            </div>
+            <h2 class="wiki_word">Wiki</h2>
+            <form action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control search" type="text" name="q" placeholder="Search Encyclopedia">
+
+            </form>
+            <div class="link-div">
+                <a class="link-items" href="{% url 'index' %}">Home</a>
+            </div>
+            <div class="link-div">
+                <a class="link-items" href="{% url 'create' %}">Create New Page</a>
+            </div>
+            <div class="link-div">
+                <a class="link-items" href="{% url 'random' %}">Random Page</a>
+            </div>
+            <br>
+            <footer>
+                <blockquote>
+                    <p>
+                        Created by Abdullayev Javokhir
+                        <br>
+                        My Social media links
+                    </p>
+                </blockquote>
+                <ul class="social-media">
+                    <li>
+                        <a href="https://www.facebook.com/javohir.abdullayev.1308"><i class="fab fa-facebook-f icon"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Javokhir-tech"><i class="fab fa-github icon"></i></a>
+                    </li>
+                </ul>
+            </footer>
+            
+            {% block nav %}
+            {% endblock %}
+        </div>
+        <div class="main col-lg-9 col-md-9">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>
